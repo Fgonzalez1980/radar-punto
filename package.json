@@ -1,0 +1,40 @@
+{
+  "name": "radar-punto",
+  "version": "1.0.0",
+  "description": "Sistema de inteligência de mercado para Punto - Análise de pagamentos B2B, postos e oficinas",
+  "main": "index.js",
+  "scripts": {
+    "start": "n8n start",
+    "dev": "n8n start --tunnel",
+    "build": "echo 'Build completed'",
+    "test": "echo 'No tests specified'"
+  },
+  "dependencies": {
+    "n8n": "latest",
+    "pg": "^8.11.3",
+    "redis": "^4.6.8"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "author": "Flavio Chimenti Gonzalez - Punto/Edenred",
+  "license": "MIT",
+  "keywords": [
+    "punto",
+    "edenred",
+    "ticketlog",
+    "repom",
+    "n8n",
+    "workflow",
+    "automation",
+    "fintech",
+    "intelligence",
+    "agents",
+    "pagamentos",
+    "b2b"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Fgonzalez1980/radar-punto.git"
+  }
+}
