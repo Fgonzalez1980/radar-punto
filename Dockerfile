@@ -1,10 +1,8 @@
 FROM n8nio/n8n:latest
 
+# Variáveis de ambiente essenciais
 ENV N8N_HOST=0.0.0.0
 ENV N8N_PORT=3000
-ENV N8N_LISTEN_ADDRESS=0.0.0.0
-ENV N8N_BASIC_AUTH_ACTIVE=false
 
+# Expor porta
 EXPOSE 3000
-
-CMD ["n8n", "start"]
