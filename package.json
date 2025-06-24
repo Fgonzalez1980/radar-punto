@@ -32,6 +32,11 @@
     "agents",
     "pagamentos",
     "b2b"
+    "Visa"
+    "Mastercard"
+    "Elo"
+    "Adquirencia"
+    
   ],
   "repository": {
     "type": "git",
