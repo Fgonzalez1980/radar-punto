@@ -16,14 +16,6 @@ GENERIC_TIMEZONE = "America/Sao_Paulo"
 TZ = "America/Sao_Paulo"
 NODE_ENV = "production"
 
-# Database configs (será preenchido após criar PostgreSQL)
-DB_TYPE = "postgresdb"
-DB_POSTGRESDB_HOST = "postgres.railway.internal"
-DB_POSTGRESDB_PORT = "5432"
-DB_POSTGRESDB_DATABASE = "railway"
-DB_POSTGRESDB_USER = "postgres"
-DB_POSTGRESDB_PASSWORD = "MstURTQbiFqxNbihtJPQbpVkKjNWDxke"
-
 # Encryption key (IMPORTANTE: gerar uma chave única)
 N8N_ENCRYPTION_KEY = "d9bdce8090778db64c977aef79f25340ebd5031a104965d8515e4e5aa3e930c3"
 
