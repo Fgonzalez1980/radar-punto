@@ -1,0 +1,33 @@
+[build]
+builder = "dockerfile"
+
+[deploy]
+healthcheckPath = "/healthz"
+healthcheckTimeout = 100
+restartPolicyType = "on_failure"
+
+[[services]]
+name = "radar-punto"
+
+[services.variables]
+N8N_HOST = "0.0.0.0"
+N8N_PORT = "3000"
+N8N_PROTOCOL = "https"
+GENERIC_TIMEZONE = "America/Sao_Paulo"
+TZ = "America/Sao_Paulo"
+NODE_ENV = "production"
+
+# Database configs (será preenchido após criar PostgreSQL)
+DB_TYPE = "postgresdb"
+DB_POSTGRESDB_HOST = "${PGHOST}"
+DB_POSTGRESDB_PORT = "${PGPORT}"
+DB_POSTGRESDB_DATABASE = "${PGDATABASE}"
+DB_POSTGRESDB_USER = "${PGUSER}"
+DB_POSTGRESDB_PASSWORD = "${PGPASSWORD}"
+
+# Encryption key (IMPORTANTE: gerar uma chave única)
+N8N_ENCRYPTION_KEY = "d9bdce8090778db64c977aef79f25340ebd5031a104965d8515e4e5aa3e930c3"
+
+# Configurações de webhook
+WEBHOOK_URL = "https://radar-punto-production.railway.app/"
+N8N_EDITOR_BASE_URL = "https://radar-punto-production.railway.app/"
