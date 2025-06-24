@@ -1,4 +1,3 @@
-# Dockerfile para n8n no Railway - Radar Punto
 FROM n8nio/n8n:latest
 
 # Definir diretório de trabalho
@@ -25,7 +24,6 @@ USER node
 ENV N8N_HOST=0.0.0.0
 ENV N8N_PORT=3000
 ENV N8N_PROTOCOL=https
-ENV WEBHOOK_URL=https://radar-punto-production.railway.app/
 ENV GENERIC_TIMEZONE=America/Sao_Paulo
 ENV TZ=America/Sao_Paulo
 
@@ -33,4 +31,4 @@ ENV TZ=America/Sao_Paulo
 EXPOSE 3000
 
 # Comando para iniciar n8n
-CMD ["n8n"]
+CMD ["n8n", "start"]
