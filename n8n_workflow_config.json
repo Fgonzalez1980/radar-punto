@@ -1,0 +1,126 @@
+{
+  "nodes": [
+    {
+      "name": "Agendamento",
+      "type": "n8n-nodes-base.cron",
+      "position": [200, 300],
+      "parameters": {
+        "triggerTimes": {
+          "item": [
+            {
+              "hour": 2,
+              "minute": 0
+            },
+            {
+              "hour": 3,
+              "minute": 0
+            },
+            {
+              "hour": 4,
+              "minute": 0
+            },
+            {
+              "hour": 5,
+              "minute": 0
+            }
+          ]
+        },
+        "timezone": "America/Sao_Paulo"
+      }
+    },
+    {
+      "name": "Verificar E-mails",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [400, 300],
+      "parameters": {
+        "url": "https://monitoria-cerc-production.up.railway.app/checar-emails",
+        "method": "GET",
+        "options": {
+          "timeout": 30000
+        }
+      }
+    },
+    {
+      "name": "Condição - Mais de 5 erros?",
+      "type": "n8n-nodes-base.if",
+      "position": [600, 300],
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{$json.total_erros}}",
+              "operation": "larger",
+              "value2": 5
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Disparar Alerta",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [800, 200],
+      "parameters": {
+        "url": "https://monitoria-cerc-production.up.railway.app/disparar-alerta",
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "mensagem": "🚨 ALERTA CERC: {{$node['Verificar E-mails'].json.total_erros}} e-mail(s) com problema encontrado(s) às {{$now.format('HH:mm')}}h!"
+        },
+        "options": {
+          "timeout": 30000
+        }
+      }
+    },
+    {
+      "name": "Log - Tudo OK",
+      "type": "n8n-nodes-base.noOp",
+      "position": [800, 400],
+      "parameters": {}
+    }
+  ],
+  "connections": {
+    "Agendamento": {
+      "main": [
+        [
+          {
+            "node": "Verificar E-mails",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verificar E-mails": {
+      "main": [
+        [
+          {
+            "node": "Condição - Mais de 5 erros?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Condição - Mais de 5 erros?": {
+      "main": [
+        [
+          {
+            "node": "Disparar Alerta",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Log - Tudo OK",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
