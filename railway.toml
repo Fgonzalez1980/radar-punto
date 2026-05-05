@@ -1,15 +1,10 @@
 [build]
-
 builder = "dockerfile"
 
 [deploy]
-
 healthcheckTimeout = 300
-
 restartPolicyType = "on_failure"
-
 restartPolicyMaxRetries = 10
 
 [http]
-
 internalPort = 5678
